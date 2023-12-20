@@ -5,16 +5,142 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added 
+- Estonia and Belarus translations
+
+### Changed
+- updated many translations 
 
 ### Fixed
-- Typo in quotes
+- transparency issues on Windows 10
+
+## [1.15.1] - 2023-11-19
+### Fixed
+- improve DND monitoring memory usage
+
+### Changed
+- hide autostart option for Windows Store build as it doesn't work
+
+## [1.15.0] - 2023-11-11
+### Added
+- new end-of-the-break sound
+- both left and right click on tray opens menu (Windows)
+- double click on tray opens Preferences (Windows)
+- adds Vietnamese translations
+- reset breaks shortcut (advanced option)
+- skip to the next break shortcut (advanced option)
+- respect Do Not Disturb on Linux distros (KDE, XFCE, GNOME)
+
+## Changed
+- updated many translations
+
+### Fixed
+- improve Do Not Disturb detection
+- start at login for Windows Store version (not sure whether successfully)
+
+## [1.14.1] - 2023-06-04
+### Added
+- advanced option to not show menubar (tray) icon
+
+### Fixed
+- break progress bar overflowing on tall screens
+- dock icon staying after break on macOS
+
+## Changed
+- updated many translations
+
+## [1.14.0] - 2023-04-15
+### Added
+- new break ideas
+- ability to open Preferences window from command line
+- advanced option to set different sounds for Mini and Long Breaks
+- advanced option to set different color theme for Mini and Long Breaks
+
+## Fixed
+- error when checking for new version fails
+- VoiceOver glitch on mac
+- notifications getting stacked in Notification center (macOS, Linux)
+- notifications preventing Gnome DE from sleeping
+
+## Changed
+- improved linux Preferences positioning
+- updated many translations
+
+## [1.13.1] - 2022-12-23
+## Fixed
+- migration script for new installs
+
+## [1.13.0] - 2022-12-23
+### Added
+- Galician translations
+- Filipino translations
+
+## Fixed
+- time translations for Chinese
+- tray icon popup on Linux
+
+## Changed
+- updated many translations
+- merged `pauseBreaksShortcut` and `resumeBreaksShortcut` to `pauseBreaksToggleShortcut`
+
+## [1.12.0] - 2022-9-24
+### Added
+- support for Flatpak
+
+### Changed
+- updated many translations
+- remaining times are more exact
+- only update tray when needed
+
+### Removed
+- no Linux ARM32 builds, as CI does not support them anymore
+
+## [1.11.0] - 2022-8-7
+### Added
+- Japanese translations
+- break ideas are translatable
+- unregister shortcuts on app's quit
+
+### Changed
+- updated many translations
+
+### Removed
+- no Linux 32 builds, as Electron does not support them anymore
+
+### Fixed
+- crashing when skipping to break and time to break in tray
+- Portuguese and Brazilian labels in welcome screen
+- partial minutes in break preferences
+- counting break time when break starts
+- breaks not being finished when exclusion starts
+- incorrect format in logs
+- Preferences bigger then available height
+
+## [1.10.0] - 2022-2-22
+### Added
+- advanced option for app exclusion check interval
+- build for Apple silicon
+- ability to schedule break from command line
+
+### Changed
+- breaks can't be paused while in break and strict mode is active
+- updated many translations
+
+## [1.9.0] - 2021-12-24
+
+### Fixed
+- typo in quotes
 - break not being resumed after DND if device was locked meanwhile on macOS
 - transparency not working in breaks
 - command line arguments
 - Turkish option in Welcome window
+- no break texts and time in break window
 
 ### Changed
 - updated many translations
+
+### Added
+- advanced option to show current time in break window
 
 ## [1.8.1] - 2021-11-24
 ### Fixed
@@ -117,7 +243,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.3.0] - 2020-11-08
 ### Added
-- control a running instance from command line  
+- control a running instance from command line
 - advanced option to disable check for new version
 - new break ideas
 
@@ -620,7 +746,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - resume/pause functionality for reminder
 - scripts for creating installers for OS X, Windows, Linux
 
-[Unreleased]: https://github.com/hovancik/stretchly/compare/v1.8.1...HEAD
+[Unreleased]: https://github.com/hovancik/stretchly/compare/v1.15.1...HEAD
+[1.15.1]: https://github.com/hovancik/stretchly/compare/v1.15.0...v1.15.1
+[1.15.0]: https://github.com/hovancik/stretchly/compare/v1.14.1...v1.15.0
+[1.14.1]: https://github.com/hovancik/stretchly/compare/v1.14.0...v1.14.1
+[1.14.0]: https://github.com/hovancik/stretchly/compare/v1.13.1...v1.14.0
+[1.13.1]: https://github.com/hovancik/stretchly/compare/v1.13.0...v1.13.1
+[1.13.0]: https://github.com/hovancik/stretchly/compare/v1.12.0...v1.13.0
+[1.12.0]: https://github.com/hovancik/stretchly/compare/v1.11.0...v1.12.0
+[1.11.0]: https://github.com/hovancik/stretchly/compare/v1.10.0...v1.11.0
+[1.10.0]: https://github.com/hovancik/stretchly/compare/v1.9.0...v1.10.0
+[1.9.0]: https://github.com/hovancik/stretchly/compare/v1.8.1...v1.9.0
 [1.8.1]: https://github.com/hovancik/stretchly/compare/v1.8.0...v1.8.1
 [1.8.0]: https://github.com/hovancik/stretchly/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/hovancik/stretchly/compare/v1.6.0...v1.7.0

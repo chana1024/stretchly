@@ -1,5 +1,5 @@
-const { UntilMorning } = require("./untilMorning");
-const log = require("electron-log");
+const { UntilMorning } = require('./untilMorning')
+const log = require('electron-log/main')
 
 const allOptions = {
   title: {
@@ -19,6 +19,12 @@ const allOptions = {
     short: "-n",
     description: "Do not skip directly to this break (Long or Mini)",
     withValue: false,
+  },
+  wait: {
+    long: '--wait',
+    short: '-w',
+    description: 'Specify an interval to wait before skipping to this break (Long or Mini) [HHhMMm|HHh|MMm|MM]',
+    withValue: true
   },
   duration: {
     long: "--duration",
@@ -53,50 +59,58 @@ const allCommands = {
     description: "toggle breaks",
   },
   mini: {
-    description: "Skip to the Mini Break, customize it",
-    options: [allOptions.title, allOptions.noskip],
+    description: 'Skip to the Mini Break, customize it',
+    options: [allOptions.title, allOptions.noskip, allOptions.wait]
   },
   long: {
-    description: "Skip to the Long Break, customize it",
-    options: [allOptions.text, allOptions.title, allOptions.noskip],
+    description: 'Skip to the Long Break, customize it',
+    options: [allOptions.text, allOptions.title, allOptions.noskip, allOptions.wait]
   },
-};
+  preferences: {
+    description: 'Open Preferences window'
+  }
+}
 
-const allExamples = [
-  {
-    cmd: "stretchly pause",
-    description: "Pause breaks indefinitely",
-  },
-  {
-    cmd: "stretchly pause -d 60",
-    description: "Pause breaks for one hour",
-  },
-  {
-    cmd: "stretchly pause -d 1h",
-    description: "Pause breaks for one hour",
-  },
-  {
-    cmd: "stretchly pause -d 1h20m",
-    description: "Pause breaks for one hour and twenty minutes",
-  },
-  {
-    cmd: "stretchly toggleBreak",
-    description: "toggleBreak",
-  },
-  {
-    cmd: 'stretchly mini -T "Stretch up!"',
-    description: 'Start a Mini Break, with the title "Stretch up!"',
-  },
-  {
-    cmd: 'stretchly long -T "Stretch up!" --noskip',
-    description: 'Set the next Break\'s title to "Stretch up!"',
-  },
-  {
-    cmd: 'stretchly long -T "Stretch up!" -t "Go stretch!"',
-    description:
-      'Start a long break, with the title "Stretch up!" and text "Go stretch!"',
-  },
-];
+const allExamples = [{
+  cmd: 'stretchly pause',
+  description: 'Pause breaks indefinitely'
+},
+{
+  cmd: 'stretchly pause -d 60',
+  description: 'Pause breaks for one hour'
+},
+{
+  cmd: 'stretchly pause -d 1h',
+  description: 'Pause breaks for one hour'
+},
+{
+  cmd: 'stretchly pause -d 1h20m',
+  description: 'Pause breaks for one hour and twenty minutes'
+},
+{
+  cmd: "stretchly toggleBreak",
+  description: "toggleBreak",
+},
+{
+  cmd: 'stretchly mini -T "Stretch up!"',
+  description: 'Start a Mini Break, with the title "Stretch up!"'
+},
+{
+  cmd: 'stretchly long -T "Stretch up!" --noskip',
+  description: 'Set the next Break\'s title to "Stretch up!"'
+},
+{
+  cmd: 'stretchly long -T "Stretch up!" -t "Go stretch!"',
+  description: 'Start a long break, with the title "Stretch up!" and text "Go stretch!"'
+},
+{
+  cmd: 'stretchly long -w 20m -T "Stretch up!"',
+  description: 'Wait 20 minutes, then start a long break with the title set to "Stretch up!"'
+},
+{
+  cmd: 'stretchly preferences',
+  description: 'Open Preferences window'
+}]
 
 // Parse cmd line, check if valid and put variables in a dedicated object
 class Command {
@@ -160,11 +174,7 @@ class Command {
       });
 
       if (!valid) {
-        log.error(
-          `Stretchly ${
-            this.isFirstInstance ? "" : "2"
-          }: options '${name}' is not valid for command '${this.command}'`
-        );
+        log.error(`Stretchly${this.isFirstInstance ? '' : ' 2'}: option '${name}' is not valid for command '${this.command}'`)
       }
     }
 
@@ -183,11 +193,7 @@ class Command {
 
       default:
         if (this.hasSupportedCommand) {
-          log.info(
-            `Stretchly ${
-              this.isFirstInstance ? "" : "2"
-            }: forwarding command '${this.command}' to the main instance`
-          );
+          log.info(`Stretchly${this.isFirstInstance ? '' : ' 2'}: forwarding command '${this.command}' to the main instance`)
         }
     }
   }
@@ -209,7 +215,15 @@ class Command {
     }
   }
 
-  checkInMain() {
+  waitToMs () {
+    if (!this.options.wait) {
+      return 0
+    }
+
+    return parseDuration(this.options.wait)
+  }
+
+  checkInMain () {
     if (!this.command) {
       return false;
     }

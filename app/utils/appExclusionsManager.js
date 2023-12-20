@@ -1,5 +1,5 @@
 const EventEmitter = require('events')
-const log = require('electron-log')
+const log = require('electron-log/main')
 const psList = require('ps-list')
 
 class AppExclusionsManager extends EventEmitter {
@@ -7,6 +7,7 @@ class AppExclusionsManager extends EventEmitter {
     super()
     this.timer = null
     this.appExclusion = settings.get('appExclusions').find(ex => ex.active)
+    this.appExclusionsCheckInterval = settings.get('appExclusionsCheckInterval')
     this.reset()
     if (this.appExclusion) {
       this.start()
@@ -17,6 +18,7 @@ class AppExclusionsManager extends EventEmitter {
     clearInterval(this.timer)
     this.timer = null
     this.appExclusion = settings.get('appExclusions').find(ex => ex.active)
+    this.appExclusionsCheckInterval = settings.get('appExclusionsCheckInterval')
     this.reset()
     if (this.appExclusion) {
       this.start()
@@ -62,7 +64,7 @@ class AppExclusionsManager extends EventEmitter {
         this.isOnAppExclusion = false
         this.emit('appExclusionFinished', this.appExclusion.rule)
       }
-    }, 1000)
+    }, this.appExclusionsCheckInterval)
   }
 
   get isSchedulerCleared () {

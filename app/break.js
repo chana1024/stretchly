@@ -30,6 +30,7 @@ window.onload = (event) => {
   })
 
   ipcRenderer.once('progress', (event, started, duration, strictMode, postpone, postponePercent, backgroundColor) => {
+    ipcRenderer.send('long-break-loaded')
     const progress = document.querySelector('#progress')
     const progressTime = document.querySelector('#progress-time')
     const postponeElement = document.querySelector('#postpone')
@@ -44,6 +45,10 @@ window.onload = (event) => {
     })
 
     window.setInterval(() => {
+      if (settings.get('currentTimeInBreaks')) {
+        document.querySelector('.breaks > :last-child').innerHTML =
+        (new Date()).toLocaleTimeString()
+      }
       if (Date.now() - started < duration) {
         const passedPercent = (Date.now() - started) / duration * 100
         Utils.canSkip(strictMode, postpone, passedPercent, postponePercent)
@@ -52,7 +57,8 @@ window.onload = (event) => {
         closeElement.style.display =
           Utils.canSkip(strictMode, postpone, passedPercent, postponePercent) ? 'flex' : 'none'
         progress.value = (100 - passedPercent) * progress.max / 100
-        progressTime.innerHTML = Utils.formatTimeRemaining(Math.trunc(duration - Date.now() + started))
+        progressTime.innerHTML = Utils.formatTimeRemaining(Math.trunc(duration - Date.now() + started),
+          settings.get('language'))
       }
     }, 100)
   })

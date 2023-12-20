@@ -166,7 +166,11 @@
     "screen": "Ekran dla przerw:",
     "breakWindowSizeInfo": "Jaki procent ekranu powinno ukryć okno przerwy?",
     "breakWindowSize": "Wielkość okna przerwy",
-    "opacity": "Przezroczystość:"
+    "opacity": "Przezroczystość:",
+    "timeToBreakInTray": "Czas na przerwę",
+    "currentTimeInBreaks": "Aktualny czas",
+    "showCurrentTimeInBreaks": "Pokaż aktualną godzinę w okienku przerwy",
+    "showTimeToBreakInTray": "Pokaż czas pozostały do następnej przerwy w ikonie paska zadań"
   },
   "utils": {
     "none_one": "{{count}}",
@@ -187,14 +191,14 @@
     "hours_one": "{{count}} godzina",
     "hours_few": "{{count}} godziny",
     "hours_many": "{{count}} godzin",
-    "secondsRemaining": "Pozostało $t(utils.seconds, {'count': {{seconds}} })",
-    "aboutMinutesRemaining": "Pozostało około $t(utils.minutes, {'count': {{minutes}} })",
-    "aboutHoursRemaining": "Pozostało około $t(utils.hours, {'count': {{hours}} })",
-    "aboutHoursMinutesRemaining": "Pozostało około $t(utils.hours, {'count': {{hours}} }) $t(utils.minutes, {'count': {{minutes}} })",
-    "inSeconds": "za $t(utils.seconds, {'count': {{seconds}} })",
-    "inAboutMinutes": "za około $t(utils.minutes, {'count': {{minutes}} })",
-    "inAboutHours": "za około $t(utils.hours, {'count': {{hours}} })",
-    "inAboutHoursMinutes": "za około $t(utils.hours, {'count': {{hours}} }) $t(utils.minutes, {'count': {{minutes}} })"
+    "remaining": "Pozostało {{count}}",
+    "inAbout": "za około {{count}}",
+    "none_other": "{{count}}",
+    "percent_other": "{{count}} procent",
+    "oclock_other": "{{count}}",
+    "seconds_other": "{{count}} sekund",
+    "minutes_other": "{{count}} minut",
+    "hours_other": "{{count}} godzin"
   },
   "process": {
     "newVersionAvailable": "Dostępna nowa wersja!"
@@ -216,6 +220,99 @@
     "afterMiniBreak_few": "po {{count}} mikroprzerwach",
     "afterMiniBreak_many": "po {{count}} mikroprzerwach",
     "resuming": "Wznawianie",
-    "appExclusion": "Zasada wyjątku aplikacji"
+    "appExclusion": "Zasada wyjątku aplikacji",
+    "afterMiniBreak_other": "po {{count}} Mini Przerwa"
+  },
+  "miniBreakIdeas": {
+    "aac": {
+      "text": "Powoli spójrz w górę, następnie w dół."
+    },
+    "aaa": {
+      "text": "Idź po szklankę wody."
+    },
+    "aab": {
+      "text": "Powoli spójrz w lewo, następnie w prawo."
+    },
+    "aad": {
+      "text": "Zamknij oczy i weź kilka głębokich oddechów."
+    },
+    "aae": {
+      "text": "Zamknij oczy i zrelaksuj się."
+    },
+    "aaf": {
+      "text": "Rozciągnij mięśnie nóg."
+    },
+    "aag": {
+      "text": "Rozciągnij ramiona."
+    },
+    "aah": {
+      "text": "Czy twoja pozycja siedząca jest prawidłowa?"
+    },
+    "aai": {
+      "text": "Powoli skręć głowę w bok i zatrzymaj na 10 sekund."
+    },
+    "aaj": {
+      "text": "Powoli przechyl głowę na bok i przytrzymaj przez 5-10 sekund."
+    },
+    "aak": {
+      "text": "Wstań i przeciągnij się."
+    },
+    "aal": {
+      "text": "Spójrz na coś oddalone co najmniej 20 metrów."
+    },
+    "aam": {
+      "text": "Poświęć chwilę, aby pomyśleć o czymś, co doceniasz."
+    },
+    "aan": {
+      "text": "Poświęć chwilę, aby docenić to, że żyjesz."
+    },
+    "aao": {
+      "text": "Prawdziwie ergonomiczne miejsce pracy to takie, od którego regularnie odchodzisz."
+    },
+    "aap": {
+      "text": "Zamknij oczy i policz swoje oddechy."
+    },
+    "aaq": {
+      "text": "Zamknij oczy i nazwij to, co słyszysz."
+    },
+    "aar": {
+      "text": "Połóż opuszki palców na ramionach. Poruszaj ramionami do przodu przez 10 sekund, a następnie do tyłu."
+    },
+    "aas": {
+      "text": "Podnieś prawą rękę, wyciągnij ją nad głową w lewo i przytrzymaj przez 10 sekund. Powtórz po drugiej stronie."
+    },
+    "aaw": {
+      "text": "Skup się co 20 minut przez 20 sekund na obiekcie w odległości 20 metrów."
+    },
+    "aax": {
+      "text": "Jeśli potrzebujesz pomocy, poproś o nią."
+    },
+    "aay": {
+      "text": "Rób jedną rzecz na raz."
+    },
+    "aaz": {
+      "text": "Czy mądrze poświęcasz uwagę?"
+    },
+    "aba": {
+      "text": "Zmień pozycję siedzącą."
+    },
+    "abb": {
+      "text": "Wystaw swoje oczy na naturalne światło."
+    },
+    "aat": {
+      "text": "Prawą ręką chwyć kolejno każdy palec lewej ręki i ściśnij. Powtórz po drugiej stronie."
+    },
+    "aau": {
+      "text": "Wstań i zrób wypad. Przytrzymaj tak przez 10 sekund i zmień nogę."
+    },
+    "abc": {
+      "text": "Mając zamknięte oczy, powoli i delikatnie przesuwaj oczy w górę i dół."
+    },
+    "abd": {
+      "text": "Mając zamknięte oczy, polowi i delikatnie przesuwaj wzrok w lewo i w prawo."
+    },
+    "aav": {
+      "text": "Zamknij oczy i skup się na tym co Ciebie otacza, nie oceniając tego."
+    }
   }
 }

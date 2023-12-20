@@ -22,7 +22,7 @@ class StatusMessages {
       if (this.timeLeft) {
         message += i18next.t('statusMessages.paused') + ' - ' +
           i18next.t('statusMessages.resuming') + ' ' +
-          Utils.formatTimeIn(this.timeLeft)
+          Utils.formatTimeIn(this.timeLeft, this.settings.get('language'))
         return message
       } else {
         message += i18next.t('statusMessages.paused') + ' ' +
@@ -49,17 +49,16 @@ class StatusMessages {
     const microbreakNotificationInterval = this.settings.get('microbreakNotification')
       ? this.settings.get('microbreakNotificationInterval')
       : 0
-    i18next.t('main.nextBreakFollowing', { count: breakInterval - breakNumber })
 
     if (this.reference === 'startBreak') {
       message += i18next.t('statusMessages.nextLongBreak') + ' ' +
-        Utils.formatTimeIn(this.timeLeft)
+        Utils.formatTimeIn(this.timeLeft, this.settings.get('language'))
       return message
     }
 
     if (this.reference === 'startMicrobreak') {
       message += i18next.t('statusMessages.nextMiniBreak') + ' ' +
-        Utils.formatTimeIn(this.timeLeft)
+        Utils.formatTimeIn(this.timeLeft, this.settings.get('language'))
       if (this.settings.get('break')) {
         message += '\n' + i18next.t('statusMessages.nextLongBreak') + ' ' +
           i18next.t('statusMessages.afterMiniBreak', { count: breakInterval - breakNumber })
@@ -69,13 +68,13 @@ class StatusMessages {
 
     if (this.reference === 'startBreakNotification') {
       message += i18next.t('statusMessages.nextLongBreak') + ' ' +
-        Utils.formatTimeIn(this.timeLeft + breakNotificationInterval)
+        Utils.formatTimeIn(this.timeLeft + breakNotificationInterval, this.settings.get('language'))
       return message
     }
 
     if (this.reference === 'startMicrobreakNotification') {
       message += i18next.t('statusMessages.nextMiniBreak') + ' ' +
-        Utils.formatTimeIn(this.timeLeft + microbreakNotificationInterval)
+        Utils.formatTimeIn(this.timeLeft + microbreakNotificationInterval, this.settings.get('language'))
       if (this.settings.get('break')) {
         message += '\n' + i18next.t('statusMessages.nextLongBreak') + ' ' +
           i18next.t('statusMessages.afterMiniBreak', { count: breakInterval - breakNumber })

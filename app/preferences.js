@@ -285,13 +285,25 @@ window.onload = (e) => {
 
   function setWindowHeight () {
     const classes = document.querySelector('body').classList
-    const height = document.querySelector('body').scrollHeight
-    if (classes.contains('darwin')) {
-      remote.getCurrentWindow().setSize(bounds.width, height + 32)
-    } else if (classes.contains('win32')) {
-      remote.getCurrentWindow().setSize(bounds.width, height + 40)
+    const scrollHeight = document.querySelector('body').scrollHeight
+    const availHeight = window.screen.availHeight
+    let height = null
+    if (classes.contains('win32')) {
+      if (scrollHeight + 40 > availHeight) {
+        height = availHeight
+      } else {
+        height = scrollHeight + 40
+      }
+    } else {
+      if (scrollHeight + 32 > availHeight) {
+        height = availHeight
+      } else {
+        height = scrollHeight + 32
+      }
     }
-    // linux is broken ;/
+    if (height) {
+      remote.getCurrentWindow().setSize(bounds.width, height)
+    }
   }
 
   function realBreakInterval () {
@@ -310,7 +322,7 @@ window.onload = (e) => {
         if (val % 1 === 0) {
           return i18next.t('utils.minutes', { count: parseInt(val) })
         } else {
-          return i18next.t('utils.minutes', { count: val })
+          return i18next.t('utils.minutes', { count: parseFloat(val) })
         }
       }
     } else {

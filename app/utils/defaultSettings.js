@@ -1,5 +1,6 @@
 const defaultBreakIdeas = require('./defaultBreakIdeas')
 const defaultMicrobreakIdeas = require('./defaultMicrobreakIdeas')
+const Utils = require('./utils')
 
 module.exports = {
   microbreakDuration: 20000,
@@ -24,9 +25,11 @@ module.exports = {
   breakPostponesLimit: 1,
   breakPostponableDurationPercent: 30,
   mainColor: '#478484',
+  miniBreakColor: '#478484',
   transparentMode: false,
   opacity: 0.9,
   audio: 'crystal-glass',
+  miniBreakAudio: 'crystal-glass',
   volume: 1,
   fullscreen: false,
   ideas: true,
@@ -35,7 +38,7 @@ module.exports = {
   allScreens: true,
   useIdeasFromSettings: false,
   language: 'en',
-  notifyNewVersion: true,
+  notifyNewVersion: !Utils.insideFlatpak(),
   isFirstRun: true,
   posLatitude: 0.0,
   posLongitude: 0.0,
@@ -49,14 +52,20 @@ module.exports = {
   endBreakShortcut: 'CmdOrCtrl+X',
   breakWindowWidth: 0.85,
   breakWindowHeight: 0.85,
-  checkNewVersion: true,
+  checkNewVersion: !Utils.insideFlatpak(),
   breakIdeas: defaultBreakIdeas,
   microbreakIdeas: defaultMicrobreakIdeas,
   showBreaksAsRegularWindows: false,
   appExclusions: [],
+  appExclusionsCheckInterval: 1000,
   pauseForSuspendOrLock: true,
-  pauseBreaksShortcut: '',
-  resumeBreaksShortcut: '',
+  pauseBreaksToggleShortcut: '',
   screen: 'primary',
-  timeToBreakInTray: false
+  timeToBreakInTray: false,
+  currentTimeInBreaks: false,
+  showTrayIcon: true,
+  skipToNextScheduledBreakShortcut: '',
+  skipToNextMiniBreakShortcut: '',
+  skipToNextLongBreakShortcut: '',
+  resetBreaksShortcut: ''
 }

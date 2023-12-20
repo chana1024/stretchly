@@ -28,12 +28,13 @@ window.onload = (e) => {
   })
 
   ipcRenderer.once('progress', (event, started, duration, strictMode, postpone, postponePercent, backgroundColor) => {
+    ipcRenderer.send('mini-break-loaded')
     const progress = document.querySelector('#progress')
     const progressTime = document.querySelector('#progress-time')
     const postponeElement = document.querySelector('#postpone')
     const closeElement = document.querySelector('#close')
-    const mainColor = settings.get('mainColor')
-    document.body.classList.add(mainColor.substring(1))
+    const miniBreakColor = settings.get('miniBreakColor')
+    document.body.classList.add(miniBreakColor.substring(1))
     document.body.style.backgroundColor = backgroundColor
 
     document.querySelectorAll('.tiptext').forEach(tt => {
@@ -42,6 +43,10 @@ window.onload = (e) => {
     })
 
     window.setInterval(() => {
+      if (settings.get('currentTimeInBreaks')) {
+        document.querySelector('.breaks > :last-child').innerHTML =
+          (new Date()).toLocaleTimeString()
+      }
       if (Date.now() - started < duration) {
         const passedPercent = (Date.now() - started) / duration * 100
         postponeElement.style.display =
@@ -49,7 +54,8 @@ window.onload = (e) => {
         closeElement.style.display =
           Utils.canSkip(strictMode, postpone, passedPercent, postponePercent) ? 'flex' : 'none'
         progress.value = (100 - passedPercent) * progress.max / 100
-        progressTime.innerHTML = Utils.formatTimeRemaining(Math.trunc(duration - Date.now() + started))
+        progressTime.innerHTML = Utils.formatTimeRemaining(Math.trunc(duration - Date.now() + started),
+          settings.get('language'))
       }
     }, 100)
   })

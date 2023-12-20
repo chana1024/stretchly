@@ -3,7 +3,7 @@ const EventEmitter = require('events')
 const NaturalBreaksManager = require('./utils/naturalBreaksManager')
 const DndManager = require('./utils/dndManager')
 const AppExclusionsManager = require('./utils/appExclusionsManager')
-const log = require('electron-log')
+const log = require('electron-log/main')
 
 class BreaksPlanner extends EventEmitter {
   constructor (settings) {
@@ -19,13 +19,13 @@ class BreaksPlanner extends EventEmitter {
 
     this.on('microbreakStarted', (shouldPlaySound) => {
       const interval = this.settings.get('microbreakDuration')
-      this.scheduler = new Scheduler(() => this.emit('finishMicrobreak', shouldPlaySound), interval, 'finishMicrobreak')
+      this.scheduler = new Scheduler(() => this.emit('finishMicrobreak', shouldPlaySound, true), interval, 'finishMicrobreak')
       this.scheduler.plan()
     })
 
     this.on('breakStarted', (shouldPlaySound) => {
       const interval = this.settings.get('breakDuration')
-      this.scheduler = new Scheduler(() => this.emit('finishBreak', shouldPlaySound), interval, 'finishBreak')
+      this.scheduler = new Scheduler(() => this.emit('finishBreak', shouldPlaySound, true), interval, 'finishBreak')
       this.scheduler.plan()
     })
 
@@ -67,6 +67,16 @@ class BreaksPlanner extends EventEmitter {
         if (!this.isPaused && this.scheduler.reference !== 'finishMicrobreak' && this.scheduler.reference !== 'finishBreak' && this.scheduler.reference !== null) {
           this.clear()
           log.info(`Stretchly: pausing breaks as 'pause' exclusion found running: '${exclusion}'`)
+          this.emit('updateToolTip')
+        } else if (!this.isPaused && this.scheduler.reference === 'finishBreak') {
+          this.emit('finishBreak', false, false)
+          this.clear()
+          log.info(`Stretchly: closing current and pausing breaks as 'pause' exclusion found running: '${exclusion}'`)
+          this.emit('updateToolTip')
+        } else if (!this.isPaused && this.scheduler.reference === 'finishMicrobreak') {
+          this.emit('finishMicrobreak', false, false)
+          this.clear()
+          log.info(`Stretchly: closing current and pausing breaks as 'pause' exclusion found running: '${exclusion}'`)
           this.emit('updateToolTip')
         } else {
           this.appExclusionsManager.inOnException = false
@@ -168,22 +178,22 @@ class BreaksPlanner extends EventEmitter {
     this.emit('updateToolTip')
   }
 
-  skipToMicrobreak () {
+  skipToMicrobreak (delay = 100) {
     this.scheduler.cancel()
     const shouldBreak = this.settings.get('break')
     const shouldMicrobreak = this.settings.get('microbreak')
-    const breakInterval = this.settings.get('breakInterval') + 1
     if (shouldBreak && shouldMicrobreak) {
+      const breakInterval = this.settings.get('breakInterval') + 1
       if (this.breakNumber % breakInterval === 0) {
         this.breakNumber = 1
       }
     }
-    this.scheduler = new Scheduler(() => this.emit('startMicrobreak'), 100, 'startMicrobreak')
+    this.scheduler = new Scheduler(() => this.emit('startMicrobreak'), delay, 'startMicrobreak')
     this.scheduler.plan()
     this.emit('updateToolTip')
   }
 
-  skipToBreak () {
+  skipToBreak (delay = 100) {
     this.scheduler.cancel()
     const shouldBreak = this.settings.get('break')
     const shouldMicrobreak = this.settings.get('microbreak')
@@ -191,7 +201,7 @@ class BreaksPlanner extends EventEmitter {
       const breakInterval = this.settings.get('breakInterval') + 1
       this.breakNumber = breakInterval
     }
-    this.scheduler = new Scheduler(() => this.emit('startBreak'), 100, 'startBreak')
+    this.scheduler = new Scheduler(() => this.emit('startBreak'), delay, 'startBreak')
     this.scheduler.plan()
     this.emit('updateToolTip')
   }

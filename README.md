@@ -1,4 +1,4 @@
-# Stretchly [![Awesome Humane Tech](https://raw.githubusercontent.com/humanetech-community/awesome-humane-tech/main/humane-tech-badge.svg?sanitize=true)](https://github.com/humanetech-community/awesome-humane-tech) [![Build Status](https://travis-ci.org/hovancik/stretchly.svg?branch=master)](https://travis-ci.org/hovancik/stretchly) [![Build status](https://ci.appveyor.com/api/projects/status/d3eq9bs1kcysulb1?svg=true)](https://ci.appveyor.com/project/hovancik/stretchly) [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/) [![codecov](https://codecov.io/gh/hovancik/stretchly/branch/master/graph/badge.svg)](https://codecov.io/gh/hovancik/stretchly) [![Join the chat at https://gitter.im/stretchly/Lobby](https://badges.gitter.im/stretchly/Lobby.svg)](https://gitter.im/stretchly/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Translation status](https://hosted.weblate.org/widgets/stretchly/-/stretchly/svg-badge.svg)](https://hosted.weblate.org/engage/stretchly/)
+# Stretchly [![Awesome Humane Tech](https://raw.githubusercontent.com/humanetech-community/awesome-humane-tech/main/humane-tech-badge.svg?sanitize=true)](https://github.com/humanetech-community/awesome-humane-tech) [![Build Status](https://travis-ci.org/hovancik/stretchly.svg?branch=master)](https://travis-ci.org/hovancik/stretchly) [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/) [![codecov](https://codecov.io/gh/hovancik/stretchly/branch/master/graph/badge.svg)](https://codecov.io/gh/hovancik/stretchly) [![Join the chat at https://gitter.im/stretchly/Lobby](https://badges.gitter.im/stretchly/Lobby.svg)](https://gitter.im/stretchly/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Translation status](https://hosted.weblate.org/widgets/stretchly/-/stretchly/svg-badge.svg)](https://hosted.weblate.org/engage/stretchly/)
 
 <img src="stretchly_128x128.png" align="right" alt="Stretchly logo">
 
@@ -22,31 +22,59 @@
 
 ## Install [![GitHub All Releases](https://img.shields.io/github/downloads/hovancik/stretchly/total)](https://github.com/hovancik/stretchly/releases) [![Packaging status](https://repology.org/badge/tiny-repos/stretchly.svg)](https://repology.org/project/stretchly/versions)
 
-The latest official **installers** and **portable versions** for macOS, Windows, Linux and FreeBSD can be found at [Github Releases](https://github.com/hovancik/stretchly/releases) page.
+The latest official **installers** and **portable versions** for macOS, Windows and Linux can be found at [Github Releases](https://github.com/hovancik/stretchly/releases) page. For supported versions of your OS check [Electron's supported versions](https://github.com/electron/electron/blob/main/README.md#platform-support). Read on for details of specific OSes.
 
 ### macOS
 
-You can also install *Stretchly* with [Homebrew](https://brew.sh/) by running `brew update && brew install --cask stretchly`. When upgrading, run `brew update && brew upgrade --cask`. Don't forget to Quit Stretchly, first.
+It is recommended to install *Stretchly* with [Homebrew](https://brew.sh/) by running `brew update && brew install --cask stretchly`, see [Application Signing](#application-signing). When upgrading, run `brew update && brew upgrade --cask`. Don't forget to Quit Stretchly, first.
 
- *Stretchly* is not signed (due to its costs) so you will need to use this workaround for the first run: [Open a Mac app from an unidentified developer](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
+If you're using [Alfred](https://www.alfredapp.com) or [Raycast](https://www.raycast.com/) on macOS you can use this [Alfred Workflow](https://github.com/KingOfSpades/stretchFred) or [Raycast Extension](https://www.raycast.com/u-ran/stretchly) to interact with Stretchly.
 
-If you're using [Alfred](https://www.alfredapp.com) on macOS you can use this [Alfred Workflow](https://github.com/KingOfSpades/stretchFred) to interact with Stretchly.
+#### Application Signing
+
+*Stretchly* is not signed (due to its costs and me not owning supported Apple device) so you will need to use a workaround for the first run. The workaround
+depends on if you're running an Intel or Apple Silicon chip.
+
+- **Intel Chips**: [Open a Mac app from an unidentified developer](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac).
+- **Apple Chips**: Open a terminal and run this command:
+
+```bash
+    sudo xattr -r -d com.apple.quarantine /Applications/Stretchly.app
+```
+
+If you install via [Homebrew](https://brew.sh), you can use the `--no-quarantine` flag to automatically apply the correct
+workaround.
+
+```bash
+brew install --cask --no-quarantine stretchly
+```
+
+Not sure which chip your computer has? [Here's how to tell](https://support.apple.com/en-us/HT211814).
 
 ### Windows
 
 You can also install *Stretchly* with [Chocolatey](https://chocolatey.org) by running the following command from the command line or from PowerShell: `choco install stretchly`. Upgrade with `choco upgrade stretchly`.
 
 Stretchly is also available in Microsoft's [winget](https://docs.microsoft.com/en-us/windows/package-manager/winget/).
+You can install it by running `winget install -e --id Stretchly.Stretchly`.
+
+Stretchly can be also found at official [Microsoft Store](https://apps.microsoft.com/store/detail/stretchly/9PP2B76LQQBN?hl=en-us&gl=us).
 
 You can install *Stretchly* for all users silently by running this as administrator: `installer.exe /S /allusers`.
 
-### Linux/BSD/Portable
+### Linux / Portable
 
-For portable versions and for Linux/BSD installers, head to [Github Releases page](https://github.com/hovancik/stretchly/releases). The most widely used distributions should be covered.
+For portable versions and for Linux installers, head to [Github Releases page](https://github.com/hovancik/stretchly/releases). The most widely used distributions should be covered.
+
+Stretchly is also available in some of the Linux stores:
+- [Flathub](https://flathub.org/apps/details/net.hovancik.Stretchly)
+- [Snap Store](https://snapcraft.io/stretchly)
+
+For Debian/Ubuntu and derivates you could also try this `apt` repository: `deb [trusted=yes] https://apt.fury.io/hovancik/ /`.
 
 #### Linux note
 
-Please see http://electron.atom.io/docs/api/tray/ for Electron's Tray Linux specifics. Having `libappindicator1` installed should be enough for *Stretchly*.
+Please see [http://electron.atom.io/docs/api/tray/](http://electron.atom.io/docs/api/tray/) for Electron's Tray Linux specifics.
 
 For Natural breaks, you might need some packages too (`libxss-dev`).
 
@@ -102,7 +130,7 @@ Type `stretchly help` to get a list of all commands and options available as wel
 
 ## Preferences
 
-Most of the preferences can be customized by clicking on the "Preferences" item in the tray menu.
+Most of the preferences can be customized by clicking on the "Preferences" item in the tray menu. (On Windows, to open Preferences, you can also double-click on the tray icon.)
 
 <img src="preferences.png" height="340">
 
@@ -112,19 +140,51 @@ You can also Restore the defaults to return to the default preferences state.
 
 ## Advanced Preferences
 
-All preferences are saved in a JSON file. Use the `Ctrl/Cmd + D` shortcut while viewing the About section of Preferences, to show debug info and display a clickable link to the file.
+While the most of the preferences can be edited via the app, some options and values are not available to make the app easy to understand and setup.
+
+All preferences are saved in a JSON file, so you can set Stretchly in the way you need. Use the `Ctrl/Cmd + D` shortcut while viewing the About section of Preferences, to show debug info and display a clickable link to the preferences file.
 
 It's recommended to Quit *Stretchly* before editing the preferences file.
 
 To make sure that all works as expected, it's always good idea to check that format of the preferences file is correct, ie. by using [jsonformatter](https://jsonformatter.curiousconcept.com/).
 
-After you make changes to preferences files, some of the values being shown in Preferences or elsewhere might show incorect value, as the UI is expecting specific values and is not handling cases where user makes manual changes to preferences file.
+After you make changes to preferences files, some of the values being shown in Preferences or elsewhere might show incorrect value, as the UI is expecting specific values and is not handling cases where user makes manual changes to preferences file.
 
 Some of the extra preferences are available in Contributor Preferences for [Contributors](#contributor-preferences). Those are marked by [![Contributor Preferences](https://img.shields.io/badge/Contributor_Preferences-✔-success)](#contributor-preferences) badge.
 
 Preferences marked with ![Not Reliable](https://img.shields.io/badge/Not_Reliable-β-yellow) might not work correctly and might break *Stretchly*. Use at own risk.
 
 **Note:** Before 1.0, Mini Breaks and Long Breaks were called Microbreaks and Breaks, respectively. To keep the upgrade smooth they still use that name in preferences file and in code.
+
+#### Preferences editable in the app
+
+Here are the preferences editable via the app. If values in the app does not suite your style, you could edit them maually:
+
+- `microbreakDuration` - duration of Mini Break (ms)
+- `microbreakInterval` - interval of Mini Break (ms)
+- `breakDuration` - duration of Long Break (ms)
+- `breakInterval` - interval of Long Break (Mini Breaks)
+- `breakNotification` - show notification before Mini Break
+- `microbreakNotification` - show notification before Long Break
+- `microbreak` - enable Mini Breaks
+- `break` - enable Long Breaks
+- `microbreakStrictMode` - enable strict mode for Mini Breaks
+- `breakStrictMode` - enable strict mode for Long Breaks
+- `mainColor` - theme color code (for Long Breaks),
+- `miniBreakColor` - theme color code (for Mini Breaks),
+- `transparentMode` - show break windows as transparent
+- `audio` - sound theme name (for Long Breaks)
+- `miniBreakAudio` - sound theme name (for Mini Breaks)
+- `fullscreen` - show breaks in fullscreen mode
+- `ideas` - show break ideas
+- `naturalBreaks` - monitor idle time
+- `allScreens` - show breaks on all screens
+- `language` - language
+- `useMonochromeTrayIcon` - use monochrome icon
+- `useMonochromeInvertedTrayIcon` - use inverted monochrome icon
+- `silentNotifications` - enable sounds
+- `monitorDnd` - monitor DND mode
+- `checkNewVersion` - check for new versions
 
 #### Editing Break ideas
 In the preferences file, change `useIdeasFromSettings: false,` to `useIdeasFromSettings: true,` and edit `breakIdeas` and `microbreakIdeas`.
@@ -153,6 +213,12 @@ In the preferences file, set `notifyNewVersion: false,` to disable new version n
 #### Play sound at the start of the Break [![Contributor Preferences](https://img.shields.io/badge/Contributor_Preferences-✔-success)](#contributor-preferences)
 In the preferences file, set `microbreakStartSoundPlaying: true,` to start a Mini Break with a sound (The same sound will be played as at the end of the break). Same for `breakStartSoundPlaying`.
 
+#### Different sound for Mini and Long breaks
+To play different sound for Mini Breaks, set `miniBreakAudio` to desired value (`crystal-glass`, `silence`, `tic-toc`, `wind-chime`).
+
+#### Different color theme for Mini and Long breaks
+To have different theme for Mini Breaks, set `miniBreakColor` to desired value, ie `#123456`.
+
 #### Natural breaks inactivity time [![Contributor Preferences](https://img.shields.io/badge/Contributor_Preferences-✔-success)](#contributor-preferences)
 In the preferences file, set `naturalBreaksInactivityResetTime` to your preferred value (in milliseconds greater than than 20000ms). This is an idle time length, after which *Stretchly* breaks will be paused until the user resumes activity.
 
@@ -166,19 +232,31 @@ If you'd like to disable the shortcut, set value to empty string `""`.
 
 Default value is `CmdOrCtrl+X`.
 
-#### Pause Breaks Shortcut
+#### Toggle Breaks Shortcut
 
-In the preferences file, set `pauseBreaksShortcut` to your preferred value. We do not validate this input, so please check [Electron's documentation](https://www.electronjs.org/docs/api/accelerator) for available values for key and modifier. When a given accelerator is already taken by other applications, this call will silently fail. This behavior is intended by operating systems, since they don't want applications to fight for global shortcuts.
+Toggling between Pause Breaks and running breaks.
+
+In the preferences file, set `pauseBreaksToggleShortcut` to your preferred value. We do not validate this input, so please check [Electron's documentation](https://www.electronjs.org/docs/api/accelerator) for available values for key and modifier. When a given accelerator is already taken by other applications, this call will silently fail. This behavior is intended by operating systems, since they don't want applications to fight for global shortcuts.
 
 If you'd like to disable the shortcut, set value to empty string `""`. That's the default value as well.
 
-#### Resume Breaks Shortcut
-In the preferences file, set `resumeBreaksShortcut` to your preferred value. We do not validate this input, so please check [Electron's documentation](https://www.electronjs.org/docs/api/accelerator) for available values for key and modifier. When a given accelerator is already taken by other applications, this call will silently fail. This behavior is intended by operating systems, since they don't want applications to fight for global shortcuts.
+#### Skip to the next Break Shortcut
+
+In the preferences file, set `skipToNextScheduledBreakShortcut`, `skipToNextMiniBreakShortcut`, `skipToNextLongBreakShortcut` to your preferred value. We do not validate this input, so please check [Electron's documentation](https://www.electronjs.org/docs/api/accelerator) for available values for key and modifier. When a given accelerator is already taken by other applications, this call will silently fail. This behavior is intended by operating systems, since they don't want applications to fight for global shortcuts.
+
+If you'd like to disable the shortcut, set value to empty string `""`. That's the default value as well.
+
+#### Reset Breaks Shortcut
+
+In the preferences file, set `resetBreaksShortcut` to your preferred value. We do not validate this input, so please check [Electron's documentation](https://www.electronjs.org/docs/api/accelerator) for available values for key and modifier. When a given accelerator is already taken by other applications, this call will silently fail. This behavior is intended by operating systems, since they don't want applications to fight for global shortcuts.
 
 If you'd like to disable the shortcut, set value to empty string `""`. That's the default value as well.
 
 #### Appearance [![Contributor Preferences](https://img.shields.io/badge/Contributor_Preferences-✔-success)](#contributor-preferences)
 In the preferences file, change `themeSource: 'system'` to either `'light'` or `'dark'` to always use the specified theme.
+
+#### Break window color
+In the preferences file, change `mainColor` to whatever color you like.
 
 #### Welcome window [![Contributor Preferences](https://img.shields.io/badge/Contributor_Preferences-✔-success)](#contributor-preferences)
 To show the Welcome window again on the next start, change `"isFirstRun"` to `true`.
@@ -209,8 +287,8 @@ If you want Stretchly to be paused when specific apps are running, you could hav
             "atom"
         ]
     }
-]    
-```  
+]
+```
 
 If you want Stretchly to be running when specific apps are as well, you could have this value (breaks are paused when Skype or Atom are not running):
 
@@ -224,10 +302,12 @@ If you want Stretchly to be running when specific apps are as well, you could ha
             "atom"
         ]
     }
-]    
+]
 ```
 
-You can specify multiple values, (as `appExclusions` is array) and Stretchly will take the first one that is marked as `"active": true`. Multiple `commands` can be specified as well. They are case sensitive.
+You can specify multiple values, (as `appExclusions` is array) and Stretchly will take the first one that is marked as `"active": true`. Multiple `commands` can be specified as well. Commands should be case sensitive, but seems like this is not consistent across platforms. Therefore, sometimes, going all lowercase might be needed (this was noticed on Windows).
+
+You can also specify `appExclusionsCheckInterval` in milliseconds: lower number means more often checks, but also higher CPU usage. Default value is `1000` which is 1 second.
 
 #### Pause breaks on Suspend/Lock ![Not Reliable](https://img.shields.io/badge/Not_Reliable-β-yellow)
 If you don't want to reset breaks once system is back from Suspend/Lock, set `pauseForSuspendOrLock` to `false`.
@@ -236,12 +316,19 @@ If you don't want to reset breaks once system is back from Suspend/Lock, set `pa
 In case you have disabled showing of breaks on all monitors, you can specify which one should contain the break window. Set `screen` value to one of the following:
 - `"primary"` - primary monitor as given by OS
 - `"cursor"` - monitor where there is cursor
-- `"0"` (or `0`), `"1"`, `"2"` etc, where `"0"` is the first monitor returned by OS and so forth  
+- `"0"` (or `0`), `"1"`, `"2"` etc, where `"0"` is the first monitor returned by OS and so forth
 
 #### Show time to the next break in menubar icon [![Contributor Preferences](https://img.shields.io/badge/Contributor_Preferences-✔-success)](#contributor-preferences) ![Not Reliable](https://img.shields.io/badge/Not_Reliable-β-yellow)
 
 If you want Stretchly to show time to the next break in menubar icon set `timeToBreakInTray` to `true`.
 
+#### Show current time in breaks [![Contributor Preferences](https://img.shields.io/badge/Contributor_Preferences-✔-success)](#contributor-preferences)
+To show current time in breaks, set the value of `currentTimeInBreaks` from `false` to `true`.
+
+#### Hide menubar/tray icon [![Contributor Preferences](https://img.shields.io/badge/Contributor_Preferences-✔-success)](#contributor-preferences)
+To hide Stretchly icon in menubar/tray, set the value of `showTrayIcon` from `true` to `false`.
+
+Note that this will disable graphical way of opening Stretchly Preferences. To access Preferences, you will have to use command line options (ie: `stretchly preferences` on Linux).
 
 ## Contributor Preferences
 
@@ -332,14 +419,11 @@ You can help to translate Stretchly on [Weblate](https://hosted.weblate.org/enga
 
 
 ## Known issues
-- power monitoring not working properly ([electron/electron#8560](https://github.com/electron/electron/issues/8560))
+- idle time detection doesn't work on Wayland ([electron/electron#27912](https://github.com/electron/electron/issues/27912))
+- Windows Store build's autorstart is not working, so was disabled. You need to do it [manually](https://www.lifewire.com/change-startup-programs-windows-11-6823499).
 
 ### MacOS
 - users experiencing their Dock hiding after a break, requiring command + tab or a mouse click to get focus back, check System Preferences > Users & Groups > {User} > Login Items. If Hide is checked for Stretchly, uncheck it, it should solve the issue.
-
-### Linux
-- tray tooltip does not work correctly ([electron/electron#15161](https://github.com/electron/electron/issues/15161))
-- tray icon is not always rendered correctly ([electron/electron#12791](https://github.com/electron/electron/issues/12791))
 
 ### Windows
 - users who upgraded to Windows 10 from previous Windows versions might be in "Do Not Disturb mode" all the time so they need to check "Show breaks even in Do Not Disturb mode"
@@ -395,7 +479,7 @@ You can help to translate Stretchly on [Weblate](https://hosted.weblate.org/enga
 - Luke Arms, [lkrms](https://github.com/lkrms)
 - Chris Heyer, [@cheyer](https://github.com/cheyer)
 - Sheri Richardson, [@sheriallis](https://github.com/sheriallis/)
-- Felix W. Dekker, [@FWDekker](https://github.com/FWDekker)
+- Florine W. Dekker, [@FWDekker](https://github.com/FWDekker)
 - Balazs Nasz, [@balazsnasz](https://github.com/balazsnasz)
 - Daniel Bankmann, [@dbankmann](https://github.com/dbankmann)
 - Aziks, [@Aziks0](https://github.com/Aziks0)
@@ -409,6 +493,12 @@ You can help to translate Stretchly on [Weblate](https://hosted.weblate.org/enga
 - Saksham Sharma, [@ssaksham](https://github.com/ssaksham)
 - Jared Wood, [@jwood13](https://github.com/jwood13)
 - Febin Jose, [@JoeNibe](https://github.com/JoeNibe)
+- João Barreiros, [@unstablectrl](https://github.com/unstablectrl)
+- Vova Babii, [@JARVIS-VOVA](https://github.com/JARVIS-VOVA)
+- Ben Hammond, [@benhamondmusic](https://github.com/benhammondmusic)
+- Jordan Williams, [@jwillikers](https://github.com/jwillikers)
+- Nai You-Ran, [@skyran1278](https://github.com/skyran1278)
+- Lorenzo García Rivera, @lorenzogrv, [lorenzogrv.tech](https://lorenzogrv.tech)
 
 Also see Github's list of [contributors](https://github.com/hovancik/stretchly/graphs/contributors).
 
@@ -442,6 +532,7 @@ Sounds used in this application are listed [here](http://freesound.org/people/ho
 - `wind chime` by [GnoteSoundz](http://freesound.org/people/GnoteSoundz/), available under the [Creative Commons 0 License](http://creativecommons.org/publicdomain/zero/1.0/).
 - `tic toc` by [magundah14](http://freesound.org/people/magundah14/), available under the [Creative Commons 0 License](http://creativecommons.org/publicdomain/zero/1.0/).
 - `silence` by [parcodeisuoni](http://freesound.org/people/parcodeisuoni/), available under the [Attribution License](http://creativecommons.org/licenses/by/3.0/).
+- `reverie` by Seemant Chandra (instagram: piyush.x_x)
 
 #### Fonts credits
 This app uses [Noto Sans](https://fonts.google.com/specimen/Noto+Sans) fonts licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
